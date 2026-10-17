@@ -1,151 +1,213 @@
 import { Link } from "react-router";
 import { FiCode, FiTerminal, FiLayers, FiArrowRight, FiGithub, FiMail, FiMapPin, FiCpu } from "react-icons/fi";
 
-export default function Home() {
+
+const Arrow = ({ className = "" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="1.4"
+    aria-hidden="true"
+  >
+    <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
+  </svg>
+)
+
+const Pin = () => (
+  <svg
+    className="w-[22px] shrink-0 self-start"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="1.4"
+    aria-hidden="true"
+  >
+    <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+    <circle cx="12" cy="10" r="2.5" />
+  </svg>
+)
+
+const services = [
+  { title: "Frontend engineering", description: "React, TypeScript, accessible interfaces" },
+  { title: "Backend development", description: "APIs, Laravel, data architecture" },
+  { title: "System design", description: "Scalable products, clear foundations" },
+];
+
+const steps = [
+  { number: "01", title: "Requirements", description: "Product scope and technical requirements" },
+  { number: "02", title: "System design", description: "App flow, architecture, and database schema" },
+  { number: "03", title: "Implementation", description: "Development plan and feature breakdown" },
+];
+
+function Block({ id, label, heading, children }) {
   return (
-    <div className="min-h-[calc(100vh-88px)] bg-[#C8C4BF] p-4 md:p-6">
-      <div
-        className="grid gap-4"
-        style={{
-          gridTemplateColumns: "repeat(12, 1fr)",
-          gridTemplateRows: "auto",
-        }}
-      >
-        <div
-          className="bg-[#2B2B2B] border-[6px] border-[#1A1A1A] shadow-[8px_8px_0_0_#1A1A1A] p-8 md:p-12 flex flex-col justify-between min-h-[340px] col-span-12 md:col-span-8 row-span-2"
-          style={{ position: "relative", overflow: "hidden" }}
-        >
-          <div
-            className="absolute bottom-0 right-0 w-64 h-64 border-[8px] border-[#3D3D3D] opacity-30"
-            style={{ transform: "rotate(20deg) translate(40%, 40%)" }}
-          />
-          <div>
-            <div className="inline-block bg-[#E8E4DF] border-4 border-[#000] px-4 py-1 mb-6 shadow-[4px_4px_0_0_#000]">
-              <span className="text-[#1A1A1A] tracking-[0.3em] font-black text-xs">
-                SOFTWARE DEVELOPER · MANILA, PH
-              </span>
-            </div>
-            <h1 className="text-[#E8E4DF] font-black leading-none tracking-tight mb-6" style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}>
-              WEB<br />
-              APPLICATION<br />
-              <span className="text-[#A8A4A0]">DEVELOPMENT.</span>
-            </h1>
-          </div>
-          <div className="flex flex-wrap gap-3 mt-8 relative z-10">
-            <Link to="/contact">
-              <div className="bg-[#E8E4DF] border-4 border-[#000] px-6 py-3 shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer">
-                <span className="text-[#1A1A1A] tracking-[0.15em] font-black text-sm">GET IN TOUCH</span>
-                <FiArrowRight className="w-4 h-4 text-[#1A1A1A]" />
-              </div>
-            </Link>
-          </div>
-        </div>
-
-        <div className="col-span-6 md:col-span-4 bg-[#1A1A1A] border-[6px] border-[#000] shadow-[8px_8px_0_0_#000] p-6 flex flex-col justify-between">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-3 h-3 bg-[#5CDB95] border-2 border-[#000] animate-pulse" />
-            <span className="text-[#5CDB95] tracking-[0.2em] font-black text-xs">AVAILABLE</span>
-          </div>
-          <div>
-            <p className="text-[#E8E4DF] font-black tracking-wider leading-tight mb-2" style={{ fontSize: "1.1rem" }}>
-              OPEN TO NEW OPPORTUNITIES
-            </p>
-            <p className="text-[#7D7D7D] text-sm tracking-wide">
-              Full-time & freelance
-            </p>
-          </div>
-          <Link to="/contact">
-            <div className="mt-4 border-4 border-[#E8E4DF] px-4 py-2 inline-flex items-center gap-2 hover:bg-[#E8E4DF] group transition-all cursor-pointer">
-              <FiMail className="w-4 h-4 text-[#E8E4DF] group-hover:text-[#1A1A1A] transition-colors" />
-              <span className="text-[#E8E4DF] group-hover:text-[#1A1A1A] tracking-[0.15em] font-black text-xs transition-colors">CONTACT ME</span>
-            </div>
-          </Link>
-        </div>
-
-        <div className="col-span-6 md:col-span-4 bg-[#E8E4DF] border-[6px] border-[#1A1A1A] shadow-[8px_8px_0_0_#1A1A1A] p-6 flex flex-col justify-between">
-          <FiMapPin className="w-8 h-8 text-[#1A1A1A]" />
-          <div>
-            <p className="text-[#1A1A1A] font-black tracking-[0.15em] mb-1" style={{ fontSize: "1.2rem" }}>
-              MANILA
-            </p>
-            <p className="text-[#5D5D5D] tracking-widest text-sm">PHILIPPINES 🇵🇭</p>
-          </div>
-        </div>
-
-        <div className="col-span-12 md:col-span-6 bg-[#3D3D3D] border-[6px] border-[#1A1A1A] shadow-[8px_8px_0_0_#1A1A1A] p-6 md:p-8">
-          <div className="bg-[#E8E4DF] border-4 border-[#000] px-4 py-1 inline-block mb-6 shadow-[4px_4px_0_0_#000]">
-            <span className="text-[#1A1A1A] tracking-[0.2em] font-black text-xs">WHAT I DO</span>
-          </div>
-          <div className="space-y-4">
-            {[
-              { icon: FiCode, label: "FRONTEND DEVELOPMENT", desc: "React · API integration · Tailwind CSS · Bootstrap" },
-              { icon: FiTerminal, label: "BACKEND DEVELOPMENT", desc: "Laravel · API development · MySQL" },
-              { icon: FiLayers, label: "SYSTEM ARCHITECTURE", desc: "Microservices · Scalable APIs · Modular architecture" },
-            ].map(({ icon: Icon, label, desc }) => (
-              <div key={label} className="flex items-start gap-4 border-b-2 border-[#4D4D4D] pb-4 last:border-0 last:pb-0">
-                <div className="bg-[#E8E4DF] border-2 border-[#000] p-2 shadow-[2px_2px_0_0_#000] flex-shrink-0">
-                  <Icon className="w-4 h-4 text-[#1A1A1A]" />
-                </div>
-                <div>
-                  <p className="text-[#E8E4DF] font-black tracking-[0.12em]" style={{ fontSize: "0.75rem" }}>{label}</p>
-                  <p className="text-[#7D7D7D] tracking-wide" style={{ fontSize: "0.75rem" }}>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="col-span-12 md:col-span-6 bg-[#E8E4DF] border-[6px] border-[#1A1A1A] shadow-[8px_8px_0_0_#1A1A1A] p-6 md:p-8">
-          <div className="bg-[#E8E4DF] border-4 border-[#000] px-4 py-1 inline-block mb-6 shadow-[4px_4px_0_0_#000]">
-            <span className="text-[#1A1A1A] tracking-[0.2em] font-black text-xs"> OTHERS </span>
-          </div>
-          <div className="space-y-4">
-            {[
-              { icon: FiCpu, label: "OTHER SKILLS", desc: "Python · Git · Postman · Debugging · Basic Machine Learning" },
-            ].map(({ icon: Icon, label, desc }) => (
-              <div key={label} className="flex items-start gap-4 border-b-2 border-[#4D4D4D] pb-4 last:border-0 last:pb-0">
-                <div className="bg-[#E8E4DF] border-2 border-[#000] p-2 shadow-[2px_2px_0_0_#000] flex-shrink-0">
-                  <Icon className="w-4 h-4 text-[#1A1A1A]" />
-                </div>
-                <div>
-                  <p className="text-[#1A1A1A] font-black tracking-[0.12em]" style={{ fontSize: "0.75rem" }}>{label}</p>
-                  <p className="text-[#1A1A1A] tracking-wide" style={{ fontSize: "0.75rem" }}>{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="col-span-12 md:col-span-8 bg-[#1A1A1A] border-[6px] border-[#000] shadow-[8px_8px_0_0_#000] p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="text-[#7D7D7D] tracking-[0.2em] font-black mb-1" style={{ fontSize: "0.65rem" }}>NEXT STEP</p>
-            <p className="text-[#E8E4DF] font-black tracking-wide" style={{ fontSize: "1.2rem" }}>
-              LET'S WORK TOGETHER
-            </p>
-          </div>
-          <Link to="/contact">
-            <div className="bg-[#E8E4DF] border-4 border-[#E8E4DF] px-8 py-4 shadow-[4px_4px_0_0_#E8E4DF] hover:shadow-[6px_6px_0_0_#E8E4DF] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center gap-3 cursor-pointer">
-              <span className="text-[#1A1A1A] tracking-[0.15em] font-black text-sm">CONTACT →</span>
-            </div>
-          </Link>
-        </div>
-
-        <div className="col-span-6 md:col-span-4 bg-[#1A1A1A] border-[6px] border-[#000] shadow-[8px_8px_0_0_#000] p-6 flex flex-col gap-4">
-          <span className="text-[#7D7D7D] tracking-[0.2em] font-black" style={{ fontSize: "0.65rem" }}>FIND ME</span>
-          {[
-            { icon: FiGithub, label: "GITHUB", href: "#" },
-            { icon: FiMail, label: "EMAIL", href: "/contact" },
-          ].map(({ icon: Icon, label, href }) => (
-            <Link to={href} key={label}>
-              <div className="border-2 border-[#3D3D3D] px-4 py-3 flex items-center gap-3 hover:border-[#E8E4DF] hover:bg-[#2B2B2B] transition-all cursor-pointer">
-                <Icon className="w-4 h-4 text-[#E8E4DF]" />
-                <span className="text-[#E8E4DF] tracking-[0.15em] font-black" style={{ fontSize: "0.7rem" }}>{label}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-
+    <div
+      id={id}
+      className="grid gap-8 border-t border-line px-7 py-12 first:border-t-0 md:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-[clamp(32px,5vw,72px)] lg:px-[clamp(28px,3.5vw,56px)] lg:py-[clamp(48px,5vw,72px)]"
+    >
+      <div>
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.08em] text-muted">{label}</p>
+        <h3 className="max-w-[16ch] text-[clamp(22px,3.4vw,38px)] font-medium tracking-[-0.03em]">{heading}</h3>
       </div>
+      <div>{children}</div>
     </div>
   );
+}
+
+export default function App() {
+  return (
+    <main className="mx-auto min-h-screen max-w-[1540px] overflow-hidden">
+
+      <section
+        className="grid border-b border-line md:grid-cols-2 lg:min-h-[610px] lg:grid-cols-[minmax(0,2.08fr)_minmax(300px,.92fr)] lg:grid-rows-[1.1fr_.9fr]"
+        id="top"
+      >
+        <div className="flex min-h-[520px] flex-col border-b border-line px-7 pt-12 pb-[42px] md:col-span-2 md:min-h-[560px] md:px-12 lg:col-span-1 lg:row-span-2 lg:min-h-[610px] lg:border-r lg:border-b-0 lg:px-[clamp(40px,4.5vw,68px)] lg:pt-[clamp(40px,5vw,72px)]">
+          <p className={`font-mono text-[10px] uppercase tracking-[0.08em] m-0 text-muted`}>
+            Software developer · Manila, PH
+          </p>
+
+          <h1 className="my-auto max-w-[760px] text-[clamp(44px,13.5vw,64px)] leading-[0.98] font-medium tracking-[-0.055em] sm:text-[clamp(48px,5.6vw,84px)] sm:leading-[0.95]">
+            Web applications,
+            <br />
+            built with <em className="font-medium">care.</em>
+          </h1>
+
+          <div className="items-end justify-between gap-10 sm:flex">
+            <p className="m-0 max-w-[460px] text-[14px] leading-[1.6] text-[#515049] lg:text-[clamp(14px,1.1vw,16px)]">
+              I design and develop useful web products, from the interface
+              people use to the systems that keep it running.
+            </p>
+            <a
+              className="group mt-[30px] flex w-max shrink-0 items-center gap-5 border-b border-ink pb-[7px] text-xs font-semibold sm:mt-0"
+              href="/contact"
+            >
+              Start a conversation
+              <Arrow className="w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
+        </div>
+
+        <aside
+          className="flex min-h-[300px] flex-col bg-[#22221e] p-7 text-[#f2f0e9] md:p-10 lg:min-h-0 lg:p-[clamp(28px,3.5vw,52px)]"
+          aria-label="Availability"
+        >
+          <div
+            className={`font-mono text-[10px] uppercase tracking-[0.08em] flex items-center gap-[9px] text-accent`}
+          >
+            <span className="size-[7px] rounded-full bg-current" />
+            Currently available
+          </div>
+          <p className="my-auto max-w-[380px] text-[clamp(21px,1.8vw,28px)] leading-[1.3] font-medium tracking-[-0.025em]">
+            Open to new opportunities and thoughtful projects.
+          </p>
+          <div
+            className={`font-mono text-[10px] uppercase tracking-[0.08em] flex items-center justify-between text-[#99988f]`}
+          >
+            <span>Freelance</span>
+            <a
+              className="grid size-10 place-items-center border border-[#56564f] text-[#f2f0e9] transition-colors hover:bg-paper hover:text-ink"
+              href="/contract"
+              aria-label="Send an email"
+            >
+              <Arrow className="w-[17px]" />
+            </a>
+          </div>
+        </aside>
+
+        <aside
+          className="flex min-h-[300px] items-end gap-[22px] border-t border-line p-7 md:border-t-0 md:border-l md:p-10 lg:min-h-0 lg:border-t lg:border-l-0 lg:p-[clamp(28px,3.5vw,52px)]"
+          aria-label="Location"
+        >
+          <Pin />
+          <div className="flex flex-col">
+            <span className={`font-mono text-[10px] uppercase tracking-[0.08em] mb-3.5 text-muted`}>
+              Working from
+            </span>
+            <strong className="text-[clamp(28px,2.6vw,40px)] leading-none font-medium tracking-[-0.05em]">
+              Manila
+            </strong>
+            <span className="mt-[9px] text-xs text-muted">
+              Philippines, GMT +8
+            </span>
+          </div>
+        </aside>
+      </section>
+
+      <section
+      >
+        <Block  id="expertise" label="What I do" heading="Building web apps and making things work.">
+          <ul className="divide-y divide-line">
+            {services.map((item) => (
+              <li key={item.title} className="py-5 first:pt-0 last:pb-0">
+                <h4 className="m-0 text-lg font-medium tracking-[-0.02em]">{item.title}</h4>
+                <p className="mb-0 mt-1 font-mono text-xs text-muted">{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        </Block>
+
+        <Block id="how-i-work" label="How I work" heading="From idea to implementation.">
+          <ol className="grid gap-8 md:grid-cols-3 md:gap-6">
+            {steps.map((item) => (
+              <li key={item.number} className="border-l-1 mx-3 p-5 border-current pt-4">
+                <span className="font-mono text-xs text-muted">{item.number}</span>
+                <h4 className="m-0 mt-2 text-base font-medium">{item.title}</h4>
+                <p className="mb-0 mt-1 text-sm leading-relaxed text-muted">{item.description}</p>
+              </li>
+            ))}
+          </ol>
+        </Block>
+
+
+        {/* <div className="flex flex-col justify-center px-6 py-[30px] md:p-12 lg:p-[clamp(30px,4.5vw,68px)]">
+          {disciplines.map((discipline, index) => (
+            <article
+              className={`grid min-h-28 grid-cols-[30px_1fr] items-center gap-[22px] border-t border-line sm:grid-cols-[48px_1fr] ${index === disciplines.length - 1 ? "border-b" : ""
+                }`}
+              key={discipline.number}
+            >
+              <span className={`font-mono text-[10px] uppercase tracking-[0.08em] text-[#85847d]`}>
+                {discipline.number}
+              </span>
+              <div>
+                <h3 className="mt-0 mb-[9px] text-[clamp(17px,1.4vw,21px)] font-medium tracking-[-0.025em]">
+                  {discipline.title}
+                </h3>
+                <p className="m-0 font-mono text-[10px] text-muted">
+                  {discipline.detail}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div> */}
+      </section>
+
+      <footer className="grid min-h-[260px] grid-cols-[1fr_auto] gap-[30px] bg-[#24241f] px-7 pt-11 pb-[30px] text-paper md:min-h-[280px] md:px-12 md:pt-14 lg:px-16 lg:pt-[72px]">
+        <p className={`font-mono text-[10px] uppercase tracking-[0.08em] m-0 text-[#aaa99f]`}>
+          Have a project in mind?
+        </p>
+
+        <a
+          className="group col-span-2 flex items-center justify-between self-center border-b border-[#77766d] pb-5 text-[clamp(38px,12vw,58px)] leading-none font-medium tracking-[-0.05em] sm:text-[clamp(38px,5vw,72px)] text-white"
+          href="/contact"
+
+        >
+          Get in touch
+          <Arrow className="w-[0.75em] transition-transform group-hover:translate-x-1" />
+        </a>
+        <span
+          className={`font-mono text-[10px] uppercase tracking-[0.08em] col-start-2 justify-self-end text-[#77766d]`}
+        >
+          © 2025 — Manila
+        </span>
+      </footer>
+    </main>
+  )
 }
