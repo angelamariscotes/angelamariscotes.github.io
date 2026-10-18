@@ -113,7 +113,7 @@ export default function App() {
             <span>Freelance</span>
             <a
               className="grid size-10 place-items-center border border-[#56564f] text-[#f2f0e9] transition-colors hover:bg-paper hover:text-ink"
-              href="/contract"
+              href="/contact"
               aria-label="Send an email"
             >
               <Arrow className="w-[17px]" />
